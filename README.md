@@ -1,2 +1,2 @@
 # OCR
-My College Machine Learning Assignment
+My OCR assignment of undergraduate education in China University of Petroleum (East China)
