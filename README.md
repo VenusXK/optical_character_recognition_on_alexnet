@@ -98,7 +98,7 @@
 
 </div>
 
-<br>
+
 
 <div align=center>
 <img decoding="async" src="./Readme_File/数据处理后的结果1.png" width="80%">
@@ -107,7 +107,7 @@
 
 **Figure 2** A total of 876 pictures of each Chinese character in the training set</div>
 
-<br>
+
 
 <div align=center>
 <img decoding="async" src="./Readme_File/数据处理后的结果2.png" width="80%" >
@@ -146,7 +146,7 @@
 
 **Figure 4** An example of an image of a batchsize input</div>
 
-<br>
+
 
 5. 本次训练由于数据集较大，使用 `gpu` 加速，通过安装 `nvidia` 的 `cuda` 模块并下载 `pytorch` 的 `cuda 11.6` 版本配置 `pytorch` 环境，通过 `torch.cuda.is_available` 判断 `cuda` 是否可用，在可用的基础上通过 `device = torch.device("cuda")` 语句设置 `gpu` 硬件，并对通过 `DataLoader` 导入的每一批训练集数据通过 `images = images.to(device)` 和 `labels = labels.to(device)` 语句将训练集数据导入 `gpu` 。
 
@@ -161,7 +161,7 @@
 
     **Figure 5** AlexNet convolutional neural network structure</div>
 
-    <br>
+    
 
     1. **`AlexNet` 网络第一个卷积层 `The first convolutional layer of the AlexNet`**
     
@@ -280,7 +280,7 @@
 
 **Figure 6** AlexNet implementation flowchart</div>
 
-<br>
+
 
 ## 四、算法实现 `Algorithm implementation`
 
@@ -362,7 +362,7 @@
 
 **Figure 7** Schematic diagram of horizontal row cutting</div>
 
-<br>
+
 
 3. 切割完每一行后，我们得到了一行行文本，对这行文本进行垂直投影并根据垂直投影求出来每个字符的边界值进行单个字符切割，实现分割点效果如下：
 
@@ -375,7 +375,7 @@
 
     **Figure 8** Achieve split effect</div>
 
-    <br>
+    
 
 ## 五、运行结果及分析 `Operation results and analysis`
 
@@ -394,7 +394,7 @@
 
     **Figure 9** Cross-entropy function in pytorch</div>
 
-    <br>
+    
 
     通过语句 `loss = torch.nn.CrossEntropyLoss()` 获取交叉熵对象，在模型训练阶段，每次训练 `32` 张图片，每 `300` 次训练记录一次 `loss` 值（交叉熵函数值），并使用 `matplotlib` 绘制曲线图。
 
@@ -417,7 +417,7 @@
 
     **Figure 10** The loss value (cross-entropy loss function value) curve trained by the model</div>
 
-    <br>
+    
 
     观察图像可以看到 `Loss` 值下降幅度有震荡，但整体呈下降姿态，经过 `50000` 次训练结果较好，`Loss` 值接近 `0` ，但仍未完全达到 `0` 值，震荡原因考虑可能为学习率设置为 `0.00001` 较高，之后降低学习率为 `0.000001` ， `Loss` 值仍保持小幅度上下振动，但总体趋势不发生变化。
 
@@ -432,7 +432,7 @@
 
     **Figure 11** The Accuracy value curve of model training</div>
 
-    <br>
+    
 
     观察图像可以看到 `Accuracy` 值上升幅度出现振荡现象，但整体呈上升姿态，经过 `50000` 次训练结果较好， `Accurarcy` 值接近 `1` ，但仍未完全达到 `1` 值，震荡原因考虑可能为学习率设置为 `0.00001` 较高，之后降低学习率为 `0.000001` ， `Accuracy` 值仍保持小幅度上下振动，但总体趋势不发生变化。
 
@@ -450,7 +450,7 @@
 
     **Figure 12** Unknown images are segmented to predict result</div>
 
-    <br>
+    
 
 2. 对于单个字体为 `48*49` 的文件，识别结果将“亶”字识别为“膏”字，将“枝”字识别为“栈”字，其余均识别正确，准确率较好。
 
@@ -463,7 +463,7 @@
 
     **Figure 13** Unknown images are segmented to predict result</div>
 
-    <br>
+    
 
 3. 对结果进行分析，由于AlexNet对读入的图片要求是 `227*227` ，本次训练数据集直接生成的 `227*227` 的图片，但是如上做未知图像的模型测试时输入的图片由于切割后几乎都比较小，经过放大后比较模糊，和训练的图片尺寸相差较大，可能会导致预测正确率不能达到训练时的预测正确率的问题，主要体现在相似字的识别上和复杂字的识别上。
 
