@@ -206,5 +206,14 @@
 
         The eighth layer inputs 4096 eigenvalues and outputs 3755 eigenvalues.
 
-2. 梯度下降法 `SGD`
-3. `Adam` 优化算法
+2. `SGD` 梯度下降法 `Gradient descent SGD`
+   
+   算法原理：对损失函数进行一阶泰勒展开的近似，对近似函数求最小值，把最小值当作下一步用来迭代的值。
+
+    Algorithm principle: Approximate the first-order Taylor expansion of the loss function, find the minimum value of the approximate function, and take the minimum value as the value used for iteration in the next step.
+    
+3. `Adam` 优化算法  `optimization algorithm Adam`
+   
+   一种相对于 `SGD` 梯度下降更快的优化算法
+
+   An optimization algorithm that is faster than SGD gradient descent.
