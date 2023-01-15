@@ -21,6 +21,11 @@
   - [三、模型描述 `Model description`](#三模型描述-model-description)
     - [1. 数据处理流程 `Data processing processes`](#1-数据处理流程-data-processing-processes)
     - [2. 用到的算法 `The algorithm used`](#2-用到的算法-the-algorithm-used)
+    - [3. 伪代码 `Pseudocode`](#3-伪代码-pseudocode)
+    - [4. 流程图 `flow chart`](#4-流程图-flow-chart)
+  - [四、算法实现 `Algorithm implementation`](#四算法实现-algorithm-implementation)
+    - [1. `AlexNet` 卷积神经网络结构实现 `AlexNet convolutional neural network structure implementation`](#1-alexnet-卷积神经网络结构实现-alexnet-convolutional-neural-network-structure-implementation)
+    - [2. 运行模型时图像分割算法实现 `Image segmentation algorithm implementation`](#2-运行模型时图像分割算法实现-image-segmentation-algorithm-implementation)
 
 ## 一、研究意义 `Research significance`
 &emsp;&emsp;汉字作为中华民族文明发展的信息载体，已有数千年的历史，也是世界上使用人数最多的文字，它记录了璀璨的民族文化，展示了东方民族独特的思维和认知方法。随着计算机技术的推广应用，尤其是互联网的日益普及，人类越来越多地以计算机获得各种信息，大量的信息处理工作也都转移到计算机上进行。在日常生活和工作中，存在着大量的文字信息处理问题，因而将文字信息快速输入计算机的要求就变得非常迫切。现代社会的信息量空前丰富，其中绝大部分信息又是以印刷体的形式进行保存和传播的，这使得以键盘输入为主要手段的计算机输入设备变得相形见绌，输入速度低已经成为信息进入计算机系统的主要瓶颈，影响着整个系统的效率。
@@ -149,7 +154,7 @@
 
     **图5** AlexNet卷积神经网络结构
 
-    **Figure 5** AlexNet卷积神经网络结构</div>
+    **Figure 5** AlexNet convolutional neural network structure</div>
 
     <br>
 
@@ -217,3 +222,152 @@
    一种相对于 `SGD` 梯度下降更快的优化算法
 
    An optimization algorithm that is faster than SGD gradient descent.
+ 
+### 3. 伪代码 `Pseudocode`
+1. **`AlexNet` 网络结构伪代码 `AlexNet structure pseudocode`**
+   ```py
+    class Alexnet(nn.Module):
+        def __init__(self, class_num = 3755):
+            super(Alexnet, self).__init__()
+            self.featureExtraction = nn.Sequential(
+                nn.Conv2d(),nn.ReLU(),nn.MaxPool2d(),
+                nn.Conv2d(),nn.ReLU(),nn.MaxPool2d(),
+                nn.Conv2d(),nn.ReLU(),
+                nn.Conv2d(),nn.ReLU(),
+            nn.Conv2d(),nn.ReLU(),nn.MaxPool2d()
+            )
+            self.fc = nn.Sequential(
+                nn.Dropout(),nn.Linear(),nn.ReLU(),
+                nn.Dropout(),nn.Linear(),nn.ReLU(),
+                nn.Linear())
+
+        def forward(self, x):
+            x = self.featureExtraction(x)
+            x = x.view(x.size(0), 256*6*6)
+            x = self.fc(x)
+            return x
+
+   ```
+2. **模型训练伪代码（以 `Adam` 为优化器）`Model training pseudocode (with 'Adam' as optimizer)`**
+    ```py
+    for epoch in range(epochs):
+        for i, data in enumerate(train_loader):
+            images, labels = data
+            outputs = model(images)
+            result_loss = loss(outputs,labels)
+            opt_Adam.zero_grad()
+            result_loss.backward()
+            opt_Adam.step()
+            train_step = train_step+1
+            if(train_step%300==0):
+                with torch.no_grad():
+                    for test_data  in test_loader:
+                        img_test,label_test = test_data
+                        outputs_test = model(img_test)
+            if(train_step%1000 == 0):
+                torch.save()
+    ```
+### 4. 流程图 `flow chart`
+<div align=center>
+<img decoding="async" src="./Readme_File/AlexNet.drawio.png" width="80%">
+
+**图6** AlexNet实现流程图
+
+**Figure 6** AlexNet implementation flowchart</div>
+
+<br>
+
+## 四、算法实现 `Algorithm implementation`
+
+### 1. `AlexNet` 卷积神经网络结构实现 `AlexNet convolutional neural network structure implementation`
+
+1. 用 `torch.nn` 库建立 `AlexNet` 的 `python` 类，通过 `class Alexnet (nn.Module)` 语句将 `torch.nn` 下的 `Module` 传入类中。
+   
+   Use the torch.nn library to build AlexNet's python classes, and use class Alexnet (nn. Module) statement passes the Module under torch.nn into the class.
+
+2. 通过 `nn.Sequential` 方法构建一个序列容器，用于搭建神经网络的模块，卷积神经网络的各网络层按照传入构造器的顺序添加到 `nn.Sequential()` 容器中。
+
+    By 'nn.Sequential' method builds a sequence container for building the modules of the neural network, and the network layers of the convolutional neural network are added to the 'nn.Sequential' container.
+
+3. 同理，用 `nn.Sequential` 构造全连接层 `
+   
+   Similarly, use 'nn. Sequential' constructs fully connected layers
+   
+4. 定义 `forward` 函数，在 `torch.nn` 模块中， `forward()` 函数执行实际的消息传递和计算，模型会自动执行网络的各层，并输出最后的特征
+   
+   Define the forward function, in the torch.nn module, the forward function performs the actual messaging and calculations, and the model automatically executes the layers of the network and outputs the final features
+
+    ```py
+    class Alexnet(nn.Module):
+        def __init__(self, class_num = 3755):
+            super(Alexnet, self).__init__()
+            self.featureExtraction = nn.Sequential(
+                nn.Conv2d(in_channels= 3, out_channels= 96, kernel_size= 11, stride= 4, bias= 0),
+                nn.ReLU(inplace= True),
+                nn.MaxPool2d(kernel_size= 3, stride= 2, padding= 0),
+                nn.Conv2d(in_channels= 96, out_channels= 256, kernel_size= 5, stride= 1, padding = 2, bias= 0),
+                nn.ReLU(inplace= True),
+                nn.MaxPool2d(kernel_size=3, stride=2),
+                nn.Conv2d(in_channels=256, out_channels=384, kernel_size=3, stride=1, padding=1, bias=0),
+                nn.ReLU(inplace=True),
+                nn.Conv2d(in_channels=384, out_channels=384, kernel_size= 3, stride=1, padding= 1, bias=0),
+                nn.ReLU(inplace=True),
+                nn.Conv2d(in_channels=384, out_channels=256, kernel_size= 3, stride= 1, padding= 1, bias=0),
+                nn.ReLU(inplace=True),
+                nn.MaxPool2d(kernel_size= 3, stride= 2, padding= 0)
+            )
+            self.fc = nn.Sequential(
+                nn.Dropout(0.5),
+                nn.Linear(in_features= 256*6*6, out_features= 4096),
+                nn.ReLU(inplace= True),
+                nn.Dropout(0.5),
+                nn.Linear(in_features= 4096, out_features= 4096),
+                nn.ReLU(inplace= True),
+                nn.Linear(in_features= 4096, out_features= class_num)
+            )
+
+        def forward(self, x):
+            x = self.featureExtraction(x)
+            x = x.view(x.size(0), 256*6*6)
+            x = self.fc(x)
+            return x
+    ```
+### 2. 运行模型时图像分割算法实现 `Image segmentation algorithm implementation`
+
+1. 要运行模型实现文字识别，第一步要考虑的就是怎么将每一个字符从图片中切割下来，然后才可以送入我们设计好的模型进行字符识别，切割算法总结为以下两个步骤：
+   
+    To run the model to achieve text recognition, the first step to consider is how to cut each character from the picture, and then it can be sent to our designed model for character recognition, and the cutting algorithm is summarized into the following two steps:
+
+   1. 对图片进行水平投影，找到每一行的上界限和下界限，进行行切割；
+
+        Horizontal projection of the picture, find the upper and lower limits of each row, and cut the rows;
+
+   2. 对切割出来的每一行，进行垂直投影，找到每一个字符的左右边界，进行单个字符的切割。
+
+        For each line cut out, vertical projection is carried out, the left and right boundaries of each character are found, and a single character is cut.
+
+2. 对于行切割，即水平投影，是对一张图片的每一行元素进行统计，然后根据统计结果画出统计结果图，进而确定每一行的起始点和结束点，统计像素图如下所示：
+
+    For row cutting, that is, horizontal projection, is to count each row element of a picture, and then draw a statistical result map according to the statistical results, and then determine the start and end points of each row, the statistical pixel map is as follows:
+
+<div align=center>
+<img decoding="async" src="./Readme_File/split.png" width="80%">
+
+**图7** 水平行切割示意图
+
+**Figure 7** Schematic diagram of horizontal row cutting</div>
+
+<br>
+
+3. 切割完每一行后，我们得到了一行行文本，对这行文本进行垂直投影并根据垂直投影求出来每个字符的边界值进行单个字符切割，实现分割点效果如下：
+
+    After cutting each line, we get a line of text, project this line of text vertically and cut a single character according to the boundary value of each character according to the vertical projection, and achieve the split point effect as follows:
+
+    <div align=center>
+    <img decoding="async" src="./Readme_File/split2.png" width="100%">
+
+    **图8** 实现分割效果
+
+    **Figure 8** Achieve split effect</div>
+
+    <br>
