@@ -29,14 +29,14 @@
 
 &emsp;&emsp;一方面，使用该技术可以提高计算机的使用效率，克服人与机器的矛盾。另一方面，该技术可以应用于快速识别身份证、银行卡、驾驶证等卡证类信息，将证件文字信息直接转换为可编辑文本，可以大大提高山东省相关部门工作效率，减少人力劳动成本，可以实时进行相关人员的身份核验，以便山东省各部门安全管理。
 
-&emsp;&emsp;On the one hand, the use of this technology can improve the efficiency of computer use and overcome the contradiction between man and machine. On the other hand, this technology can be applied to quickly identify ID cards, bank cards, driver's licenses and other card information, and directly convert the text information of the certificate into editable text, which can greatly improve the work efficiency of relevant departments in Shandong Province, reduce labor costs, and verify the identity of relevant personnel in real time for the safety management of various departments in Shandong Province.
+&emsp;&emsp;On the one hand, the use of this technology can improve the efficiency of computer use and overcome the contradiction between man and machine. On the other hand, this technology can be applied to quickly identify ID cards, bank cards, driver`s licenses and other card information, and directly convert the text information of the certificate into editable text, which can greatly improve the work efficiency of relevant departments in Shandong Province, reduce labor costs, and verify the identity of relevant personnel in real time for the safety management of various departments in Shandong Province.
 
 ## 二、数据描述 `Dataset description`
 
 ### 1. 数据获取途径 `Access to dataset`
 &emsp;&emsp;利用 `Windows` 自带的字体文件库，用 `Python` 的 `PIL` 库绘图，每张图片上绘制一个文字，总共绘制 `3755` 个汉字，
 
-&emsp;&emsp;Using the font file library that comes with WINDOWS, drawing with Python's PIL library, drawing a text on each picture, drawing a total of 3755 Chinese characters.
+&emsp;&emsp;Using the font file library that comes with WINDOWS, drawing with Python`s PIL library, drawing a text on each picture, drawing a total of 3755 Chinese characters.
 
 ### 2. 使用数据内容组成 `Composition of dataset`
 
@@ -59,7 +59,7 @@
 
 4. 字体图像的生成使用的工具是 `Python` 自带的 `PIL` 库。该库里有图片生成函数，用该函数结合字体文件，可以生成我们想要的图片化的汉字。设定好生成的字体颜色为黑底白色，字体尺寸由输入参数来动态设定。
 
-    The tool used to generate font images is Python's built-in PIL library. There is an image generation function in this library, and with this function combined with font files, we can generate the Chinese characters we want to be picturesque. Set the generated font color to white on black, and the font size is dynamically set by input parameters.
+    The tool used to generate font images is Python`s built-in PIL library. There is an image generation function in this library, and with this function combined with font files, we can generate the Chinese characters we want to be picturesque. Set the generated font color to white on black, and the font size is dynamically set by input parameters.
 
 5. 同时，我们对生成的字体进行适当的膨胀和腐蚀，以扩大训练集数量。
 
@@ -114,12 +114,12 @@
 
 2.	使用 `pytorch` 的 `ImageFolder` 库进行图像文件的选择， `ImageFolder` 假设所有的文件按文件夹保存，每个文件夹下存储同一个类别的图片，文件夹名为类名；
 
-    Use pytorch's ImageFolder library for image file selection, ImageFolder assumes that all files are saved in folders, and the same category of pictures is stored under each folder, and the folder name is class name;
+    Use pytorch`s ImageFolder library for image file selection, ImageFolder assumes that all files are saved in folders, and the same category of pictures is stored under each folder, and the folder name is class name;
 
 
 3.	由于使用 `pytorch` 框架，需要将图像转换为 `Tensor`（张量）数据结构，利用 `torchvsion` 下面的 `transforms` 库将输入图片转换为 `Tensor` 格式，语句如下：
 
-    Since the 'pytorch' framework is used, the image needs to be converted to a 'tensor' data structure, and the 'transforms' library under 'torchvsion' is used to convert the input image to 'tensor' format with the following statement:
+    Since the `pytorch` framework is used, the image needs to be converted to a `tensor` data structure, and the `transforms` library under `torchvsion` is used to convert the input image to `tensor` format with the following statement:
 
     ```py
     transforms = transforms.Compose([transforms.ToTensor()])
@@ -127,7 +127,7 @@
     ```
 4.	使用 `pytorch` 的 `DataLoader` 库进行训练集的导入，此库导入训练集为成批导入，每一批既导入图像又导入标签，训练时根据每一批图片进行训练，通过设置 `batch_size` 可以控制每一批导入数据的量， `batch_size` 越小训练的轮次越多，本次实验设置 `batch_size` 为 `32` ，通过 `DataLoader` 导入训练集大致情况如下图所示：
 
-    Use pytorch's DataLoader library for the import of the training set, this library imports the training set as batch import, each batch both imports images and labels, training according to each batch of pictures for training, through the setting batch_size you can control the amount of data imported into each batch, the smaller the batch_size, the more rounds of training, the batch_size of this experiment is set to 32, The following figure shows the general situation of importing the training set through DataLoader:
+    Use pytorch`s DataLoader library for the import of the training set, this library imports the training set as batch import, each batch both imports images and labels, training according to each batch of pictures for training, through the setting batch_size you can control the amount of data imported into each batch, the smaller the batch_size, the more rounds of training, the batch_size of this experiment is set to 32, The following figure shows the general situation of importing the training set through DataLoader:
 
 <div align=center>
 <img decoding="async" src="./Readme_File/DataLoader.png" width="80%">
@@ -140,7 +140,7 @@
 
 5. 本次训练由于数据集较大，使用 `gpu` 加速，通过安装 `nvidia` 的 `cuda` 模块并下载 `pytorch` 的 `cuda 11.6` 版本配置 `pytorch` 环境，通过 `torch.cuda.is_available` 判断 `cuda` 是否可用，在可用的基础上通过 `device = torch.device("cuda")` 语句设置 `gpu` 硬件，并对通过 `DataLoader` 导入的每一批训练集数据通过 `images = images.to(device)` 和 `labels = labels.to(device)` 语句将训练集数据导入 `gpu` 。
 
-    This training uses GPU acceleration due to the large data set, configures the PyTorch environment by installing NVIDIA's CUDA module and downloading the CUDA 11.6 version of PyTorch, determines whether CUDA is available through the torch.cuda.is_available, and sets the GPU hardware through the device = Torch.Device ("CUDA") statement on the basis of availability. For each batch of training set data imported through DataLoader, import the training set data into the GPU through images = images.to (device) and labels = labels.to (device) statements.
+    This training uses GPU acceleration due to the large data set, configures the PyTorch environment by installing NVIDIA`s CUDA module and downloading the CUDA 11.6 version of PyTorch, determines whether CUDA is available through the torch.cuda.is_available, and sets the GPU hardware through the device = Torch.Device ("CUDA") statement on the basis of availability. For each batch of training set data imported through DataLoader, import the training set data into the GPU through images = images.to (device) and labels = labels.to (device) statements.
 
 ### 2. 用到的算法 `The algorithm used`
 1. `AlexNet`卷积神经网络结构
@@ -153,9 +153,11 @@
 
     <br>
 
-    1. **`AlexNet` 网络第一个卷积层**
+    1. **`AlexNet` 网络第一个卷积层** `The first convolutional layer of the `AlexNet` network`
     
         输入的图片大小为: `224*224*3` ，为后续处理方便，普遍改为 `227*227*3` ，第一个卷积层为: `11*11*3` ，卷积核尺寸为 `11*11` ,有 `96` 个卷积核，卷积步长为 `4` ，卷积层后使用 `ReLU` 激活函数,输出的尺寸为 `（227-11）/4+1=55` ，其输出的每个特征图大小为 `55*55*96`；
+
+        The input image size is: `224*224*3`, for the convenience of subsequent processing, it is generally changed to `227*227*3`, the first convolutional layer is: `11*11*3`, the convolution kernel size is `11*11`, there are `96` convolution kernels, the convolution step size is `4`, the `ReLU` activation function is used after the convolutional layer, the output size is `(227-11)/4+1=55`, and the size of each feature map output is `55*55*96`;
 
         最大池化层的池化核大小为 `3*3` ,步长为 `2` ,输出的尺寸为  `（55-3）/2+1=27` ，因此特征图的大小为: `27*27*96` 。
 
