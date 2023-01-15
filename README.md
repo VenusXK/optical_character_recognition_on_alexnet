@@ -8,6 +8,56 @@
 >这是我在中国石油大学(华东)本科期间机器学习课程的项目作业
 >
 >This is my assignment of undergraduate education in China University of Petroleum (East China)
+
+>### 关于 `dataset` 文件夹的内容使用 `About the contents of the 'dataset' folder usage`
+>
+> 由于数据集过大，共约40G，不方便上传，这里把数据集生成代码上传运行 ` dataset/gen_printed_char.py` 文件可生成训练集图像，具体操作如下：
+> 
+> Because the dataset is too large, a total of about 40G, it is not convenient to upload, here the dataset generation code is uploaded to run the dataset/gen_printed_char.py file to generate the training set image, the specific operation is below:
+>
+>```shell
+>python gen_printed_char.py --out_dir [out_put_dir] --font_dir [windows_font_dir] --width [img_width] --height [img_height] --margin 4 --rotate 30 --rotate_step 1
+>``` 
+
+>### 关于 `train` 文件夹的内容使用 `About the contents of the 'train' folder usage`
+> `train` 目录为训练目录，执行 `train_adam.py` 后可训练模型，`train_adam.py` 为使用 `adam` 优化器进行训练，若进行训练使用该文件
+>
+>The train directory is the training directory, After executing the train_adam.py, you can train the model, 'train_adam.py' is used for training with the 'adam' optimizer, if training uses this file 
+
+>### 关于 `test` 文件夹的内容使用 `About the contents of the 'test' folder usage`
+>`test` 目录为检测图片目录，执行 `run/run.py` 后可将图片转为文字
+>
+>The 'test' directory is the directory of test images, Run /run.py to convert images to text
+>
+>`run/run.py` 运行前依次指定：
+>
+>'run/run.py' specifies before running:
+>
+>1. 要 `ocr` 识别的图片的目录
+>
+>    A directory of images to be recognized by OCR
+>
+>2. 图像分割后的目录
+>
+>    The directory after the image is segmented
+> 
+>3. 训练后的模型目录
+>
+>    Catalog of trained models
+>
+>4. 汉字和 `id` 序号对应的文件
+>
+>    The file corresponding to the kanji and 'id' ordinal number
+>
+>之后可在控制台看到识别文字
+>
+>You can then see the recognized text in the console
+
+>### 关于 `res` 文件夹的内容使用 `About the contents of the 'res' folder usage`
+> `res` 目录为模型训练结果目录，包含 `Loss` 图像生成代码、 `Accuracy` 图像生成代码、 `Loss` 图像、 `Accuracy` 图像、 `Loss` 和 `Accuracy` 的原始数据
+>
+>The res directory is the model training result directory, which contains the raw data of Loss image generation code, Accuracy image generation code, Loss image, Accuracy image, Loss, and Accuracy
+
 ### 目录 `Directory`
 - [基于卷积神经网络的印刷体识别 `Typographical-OCR`](#基于卷积神经网络的印刷体识别-typographical-ocr)
     - [目录 `Directory`](#目录-directory)
@@ -41,16 +91,7 @@
 &emsp;&emsp;On the one hand, the use of this technology can improve the efficiency of computer use and overcome the contradiction between man and machine. On the other hand, this technology can be applied to quickly identify ID cards, bank cards, driver`s licenses and other card information, and directly convert the text information of the certificate into editable text, which can greatly improve the work efficiency of relevant departments in Shandong Province, reduce labor costs, and verify the identity of relevant personnel in real time for the safety management of various departments in Shandong Province.
 
 ## 二、数据描述 `Dataset description`
->### 关于 `dataset` 文件夹的内容使用
-> 由于数据集过大，共约40G，不方便上传，这里把数据集生成代码上传运行 ` dataset/gen_printed_char.py` 文件可生成训练集图像，具体操作如下：
->
-> 
-> 
-> Because the dataset is too large, a total of about 40G, it is not convenient to upload, here the dataset generation code is uploaded to run the dataset/gen_printed_char.py file to generate the training set image, the specific operation is below:
->
->```shell
->python gen_printed_char.py --out_dir [out_put_dir] --font_dir [windows_font_dir] --width [img_width] --height [img_height] --margin 4 --rotate 30 --rotate_step 1
->``` 
+
 
 ### 1. 数据获取途径 `Access to dataset`
 &emsp;&emsp;利用 `Windows` 自带的字体文件库，用 `Python` 的 `PIL` 库绘图，每张图片上绘制一个文字，总共绘制 `3755` 个汉字，
