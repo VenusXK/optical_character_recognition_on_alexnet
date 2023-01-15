@@ -1,5 +1,5 @@
 <br><div align=center>
-<img decoding="async" src="./Readme_File/Poster.png" width="25%" >
+<img decoding="async" src="./Readme_File/Poster_matplotlib.png" width="40%" >
 </div><br>
 
 
