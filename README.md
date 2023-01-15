@@ -137,13 +137,6 @@
 
 <br>
 
-<div align=center>
-<img decoding="async" src="./Readme_File/DataLoader导入训练集情况.jpg" width="80%">
-
-**图5** 通过DataLoader导入训练集大致情况
-
-**Figure 5** Importing the training set via DataLoader gives you an overview</div>
-
 1. 本次训练由于数据集较大，使用 `gpu` 加速，通过安装 `nvidia` 的 `cuda` 模块并下载 `pytorch` 的 `cuda 11.6` 版本配置 `pytorch` 环境，通过 `torch.cuda.is_available` 判断 `cuda` 是否可用，在可用的基础上通过 `device = torch.device("cuda")` 语句设置 `gpu` 硬件，并对通过 `DataLoader` 导入的每一批训练集数据通过 `images = images.to(device)` 和 `labels = labels.to(device)` 语句将训练集数据导入 `gpu` 。
 
     This training uses GPU acceleration due to the large data set, configures the PyTorch environment by installing NVIDIA's CUDA module and downloading the CUDA 11.6 version of PyTorch, determines whether CUDA is available through the torch.cuda.is_available, and sets the GPU hardware through the device = Torch.Device ("CUDA") statement on the basis of availability. For each batch of training set data imported through DataLoader, import the training set data into the GPU through images = images.to (device) and labels = labels.to (device) statements.
