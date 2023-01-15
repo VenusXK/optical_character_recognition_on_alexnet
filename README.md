@@ -26,6 +26,9 @@
   - [四、算法实现 `Algorithm implementation`](#四算法实现-algorithm-implementation)
     - [1. `AlexNet` 卷积神经网络结构实现 `AlexNet convolutional neural network structure implementation`](#1-alexnet-卷积神经网络结构实现-alexnet-convolutional-neural-network-structure-implementation)
     - [2. 运行模型时图像分割算法实现 `Image segmentation algorithm implementation`](#2-运行模型时图像分割算法实现-image-segmentation-algorithm-implementation)
+  - [五、运行结果及分析 `Operation results and analysis`](#五运行结果及分析-operation-results-and-analysis)
+    - [1. 性能评价指标 `Performance evaluation indicators`](#1-性能评价指标-performance-evaluation-indicators)
+    - [2. 模型的训练结果和分析 `Training results and analysis of the model`](#2-模型的训练结果和分析-training-results-and-analysis-of-the-model)
 
 ## 一、研究意义 `Research significance`
 &emsp;&emsp;汉字作为中华民族文明发展的信息载体，已有数千年的历史，也是世界上使用人数最多的文字，它记录了璀璨的民族文化，展示了东方民族独特的思维和认知方法。随着计算机技术的推广应用，尤其是互联网的日益普及，人类越来越多地以计算机获得各种信息，大量的信息处理工作也都转移到计算机上进行。在日常生活和工作中，存在着大量的文字信息处理问题，因而将文字信息快速输入计算机的要求就变得非常迫切。现代社会的信息量空前丰富，其中绝大部分信息又是以印刷体的形式进行保存和传播的，这使得以键盘输入为主要手段的计算机输入设备变得相形见绌，输入速度低已经成为信息进入计算机系统的主要瓶颈，影响着整个系统的效率。
@@ -371,3 +374,36 @@
     **Figure 8** Achieve split effect</div>
 
     <br>
+
+## 五、运行结果及分析 `Operation results and analysis`
+
+### 1. 性能评价指标 `Performance evaluation indicators`
+
+1. loss值（交叉熵函数值）
+   
+   本次实验使用pytorch的交叉熵库函数，其用来判定实际的输出与期望的输出的接近程度。它主要刻画的是实际输出（概率）与期望输出（概率）的距离，交叉熵的值越小，概率分布越接近，交叉熵函数计算公式如下：
+
+   This experiment uses PyTorch's cross-entropy library function, which is used to determine how close the actual output is to the desired output. It mainly describes the distance between the actual output (probability) and the expected output (probability), the smaller the value of cross-entropy, the closer the probability distribution, the cross-entropy function calculation formula is as follows:
+
+   <div align=center>
+    <img decoding="async" src="./Readme_File/loss.pytorch.png" width="100%">
+
+    **图9** pytorch中交叉熵函数
+
+    **Figure 9** Cross-entropy function in pytorch</div>
+
+    <br>
+
+    通过语句 `loss = torch.nn.CrossEntropyLoss()` 获取交叉熵对象，在模型训练阶段，每次训练 `32` 张图片，每 `300` 次训练记录一次 `loss` 值（交叉熵函数值），并使用 `matplotlib` 绘制曲线图。
+
+    Obtain the cross-entropy object by statement loss = torch.nn.CrossEntropyLoss(), in the model training phase, 32 pictures per training, record the loss value (cross-entropy function value) every 300 training cycles, and plot the graph using matplotlib.
+
+2. Accuracy值（预测集准确率值）
+   
+   本次实验训练阶段对预测集进行预测，根据预测结果与真实值比较，将预测准确的数量与总共计算的数量做比值，计算准确率，本次实验每次训练 `32` 张图片，每 `300` 次训练记录一次值 `Accuracy` 值（预测集准确率值），并使用 `matplotlib` 绘制曲线图。
+
+   In the training stage of this experiment, the prediction set is predicted, and the prediction accuracy is compared with the real value according to the prediction results, the number of prediction accuracy is compared with the total calculated quantity, and the accuracy is calculated, this experiment trains 32 pictures each time, records the value Accuracy value (prediction set accuracy value) every 300 training times, and uses matplotlib to draw a curve.
+
+### 2. 模型的训练结果和分析 `Training results and analysis of the model`
+
+1. loss值（交叉熵函数值） `loss value (cross-entropy function value)`
