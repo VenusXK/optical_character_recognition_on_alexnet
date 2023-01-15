@@ -411,7 +411,7 @@
 1. `loss` 值（交叉熵函数值） `loss value (cross-entropy function value)`
 
     <div align=center>
-    <img decoding="async" src="./Readme_File/loss曲线.png" width="100%">
+    <img decoding="async" src="./Readme_File/Loss曲线.png" width="100%">
 
     **图10** 模型训练的Loss值（交叉熵损失函数值）曲线
 
