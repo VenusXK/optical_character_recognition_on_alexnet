@@ -1,8 +1,7 @@
 # 基于卷积神经网络的印刷体识别 `Typographical-OCR`
 
-
 <div align=center>
-<img decoding="async" src="./Readme_File/Poster_wide.png" width="50%" >
+<img decoding="async" src="./Readme_File/Poster_16_9.png" width="50%" >
 </div>
 
 \
