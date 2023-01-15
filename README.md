@@ -20,6 +20,7 @@
     - [4. 数据处理后的结果 `Results of data processing`](#4-数据处理后的结果-results-of-data-processing)
   - [三、模型描述 `Model description`](#三模型描述-model-description)
     - [1. 数据处理流程 `Data processing processes`](#1-数据处理流程-data-processing-processes)
+    - [2. 用到的算法 `The algorithm used`](#2-用到的算法-the-algorithm-used)
 
 ## 一、研究意义 `Research significance`
 &emsp;&emsp;汉字作为中华民族文明发展的信息载体，已有数千年的历史，也是世界上使用人数最多的文字，它记录了璀璨的民族文化，展示了东方民族独特的思维和认知方法。随着计算机技术的推广应用，尤其是互联网的日益普及，人类越来越多地以计算机获得各种信息，大量的信息处理工作也都转移到计算机上进行。在日常生活和工作中，存在着大量的文字信息处理问题，因而将文字信息快速输入计算机的要求就变得非常迫切。现代社会的信息量空前丰富，其中绝大部分信息又是以印刷体的形式进行保存和传播的，这使得以键盘输入为主要手段的计算机输入设备变得相形见绌，输入速度低已经成为信息进入计算机系统的主要瓶颈，影响着整个系统的效率。
@@ -137,6 +138,50 @@
 
 <br>
 
-1. 本次训练由于数据集较大，使用 `gpu` 加速，通过安装 `nvidia` 的 `cuda` 模块并下载 `pytorch` 的 `cuda 11.6` 版本配置 `pytorch` 环境，通过 `torch.cuda.is_available` 判断 `cuda` 是否可用，在可用的基础上通过 `device = torch.device("cuda")` 语句设置 `gpu` 硬件，并对通过 `DataLoader` 导入的每一批训练集数据通过 `images = images.to(device)` 和 `labels = labels.to(device)` 语句将训练集数据导入 `gpu` 。
+5. 本次训练由于数据集较大，使用 `gpu` 加速，通过安装 `nvidia` 的 `cuda` 模块并下载 `pytorch` 的 `cuda 11.6` 版本配置 `pytorch` 环境，通过 `torch.cuda.is_available` 判断 `cuda` 是否可用，在可用的基础上通过 `device = torch.device("cuda")` 语句设置 `gpu` 硬件，并对通过 `DataLoader` 导入的每一批训练集数据通过 `images = images.to(device)` 和 `labels = labels.to(device)` 语句将训练集数据导入 `gpu` 。
 
     This training uses GPU acceleration due to the large data set, configures the PyTorch environment by installing NVIDIA's CUDA module and downloading the CUDA 11.6 version of PyTorch, determines whether CUDA is available through the torch.cuda.is_available, and sets the GPU hardware through the device = Torch.Device ("CUDA") statement on the basis of availability. For each batch of training set data imported through DataLoader, import the training set data into the GPU through images = images.to (device) and labels = labels.to (device) statements.
+
+### 2. 用到的算法 `The algorithm used`
+1. `AlexNet`卷积神经网络结构
+    <div align=center>
+    <img decoding="async" src="./Readme_File/AlexNet.png" width="80%">
+
+    **图5** AlexNet卷积神经网络结构
+
+    **Figure 5** AlexNet卷积神经网络结构</div>
+
+    <br>
+
+    1. **`AlexNet` 网络第一个卷积层**
+    
+        输入的图片大小为: `224*224*3` ，为后续处理方便，普遍改为 `227*227*3` ，第一个卷积层为: `11*11*3` ，卷积核尺寸为 `11*11` ,有 `96` 个卷积核，卷积步长为 `4` ，卷积层后使用 `ReLU` 激活函数,输出的尺寸为 `（227-11）/4+1=55` ，其输出的每个特征图大小为 `55*55*96`；
+
+        最大池化层的池化核大小为 `3*3` ,步长为 `2` ,输出的尺寸为  `（55-3）/2+1=27` ，因此特征图的大小为: `27*27*96` 。
+
+    2. **`AlexNet` 网络第二个卷积层**
+
+        输入的数据为 `27*27*96` ，数据被 `256` 个大小为 `5*5*96` 的卷积核进行卷积运算,步长为 `1` ,填充值为 `2` ,卷积后使用 `ReLU` 层进行处理；
+    
+        最大池化层,核大小为 `3*3` ,步长为 `2` ；
+    
+    3. **`AlexNet` 网络第三层至第五层卷积层**
+    
+        第三层每组数据被尺寸为 `3*3*384` 的卷积核进行卷积运算,步长为 `1` ,填充值为 `1` ，卷积后使用 `ReLU` 层进行处理；
+    
+        第四层每组数据被尺寸大小为 `3*3*384` 的卷积核卷积运算,步长为 `1` 填充值为 `1` ，卷积后使用 `ReLU` 层进行处理；
+    
+        第五层每组数据都被尺寸大小为 `3*3*256` 的卷积核进行卷积运算,步长为 `1` ,填充值为 `1` ，卷积后使用 `ReLU` 层进行处理；
+    
+        经过 `3*3` 池化窗口，步长为 `2` ，池化后输出像素层；
+
+    4. **`AlexNet` 网络第六层至第八层全连接层**
+    
+        第六层首先以 `0.5` 的概率舍弃数据，经过共 `4096` 个神经元处理，之后经过 `ReLU` 层处理；
+    
+        第七六层首先以 `0.5` 的概率舍弃数据，输入 `4096` 个特征值，输出 `4096` 个特征值，之后经过 `ReLU` 层处理；
+    
+        第八层输入 `4096` 个特征值，输出 `3755` 个特征值。
+
+2. 梯度下降法 `SGD`
+3. `Adam` 优化算法
