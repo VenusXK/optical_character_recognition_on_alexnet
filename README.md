@@ -63,3 +63,17 @@
 &emsp;&emsp;若生成 `227*227` 大小的图片，在 `2060` 显卡下总共生成时间近 `16` 小时，训练集共 `3664880` 个文件。
 
 &emsp;&emsp;If an image of 227*227 size is generated, the total generation time under 2060 is nearly 16 hours, and the training set has a total of 3664880 files.
+### 4. 数据处理后的结果
+
+<div align=center>
+<img decoding="async" src="./Readme_File/数据处理后的结果1.png" width="100%" >
+图1 训练集（不包含验证集）共3755个文字，总共3664880个文件
+</div>
+<br>
+<div align=center>
+<img decoding="async" src="./Readme_File/数据处理后的结果1.png" width="100%" >
+图2 训练集每个汉字共876张图片</div>
+<br>
+<div align=center>
+<img decoding="async" src="./Readme_File/数据处理后的结果2.png" width="100%" >
+图3 验证集每个汉字共244张图片</div>
