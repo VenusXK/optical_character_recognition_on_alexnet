@@ -5,7 +5,8 @@
 # 基于卷积神经网络的印刷体识别 `Typographical-OCR`
 
 >### 简介 `Brief introduction`
->这是我在中国石油大学(华东)本科期间机器学习课程的项目作业\
+>这是我在中国石油大学(华东)本科期间机器学习课程的项目作业
+>
 >This is my assignment of undergraduate education in China University of Petroleum (East China)
 ### 目录 `Directory`
 - [基于卷积神经网络的印刷体识别 `Typographical-OCR`](#基于卷积神经网络的印刷体识别-typographical-ocr)
@@ -40,6 +41,16 @@
 &emsp;&emsp;On the one hand, the use of this technology can improve the efficiency of computer use and overcome the contradiction between man and machine. On the other hand, this technology can be applied to quickly identify ID cards, bank cards, driver`s licenses and other card information, and directly convert the text information of the certificate into editable text, which can greatly improve the work efficiency of relevant departments in Shandong Province, reduce labor costs, and verify the identity of relevant personnel in real time for the safety management of various departments in Shandong Province.
 
 ## 二、数据描述 `Dataset description`
+>### 关于 `dataset` 文件夹的内容使用
+> 由于数据集过大，共约40G，不方便上传，这里把数据集生成代码上传运行 ` dataset/gen_printed_char.py` 文件可生成训练集图像，具体操作如下：
+>
+> 
+> 
+> Because the dataset is too large, a total of about 40G, it is not convenient to upload, here the dataset generation code is uploaded to run the dataset/gen_printed_char.py file to generate the training set image, the specific operation is below:
+>
+>```shell
+>python gen_printed_char.py --out_dir [out_put_dir] --font_dir [windows_font_dir] --width [img_width] --height [img_height] --margin 4 --rotate 30 --rotate_step 1
+>``` 
 
 ### 1. 数据获取途径 `Access to dataset`
 &emsp;&emsp;利用 `Windows` 自带的字体文件库，用 `Python` 的 `PIL` 库绘图，每张图片上绘制一个文字，总共绘制 `3755` 个汉字，
