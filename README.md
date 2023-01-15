@@ -153,15 +153,17 @@
 
     <br>
 
-    1. **`AlexNet` 网络第一个卷积层** `The first convolutional layer of the `AlexNet` network`
+    1. **`AlexNet` 网络第一个卷积层** `The first convolutional layer of the AlexNet`
     
         输入的图片大小为: `224*224*3` ，为后续处理方便，普遍改为 `227*227*3` ，第一个卷积层为: `11*11*3` ，卷积核尺寸为 `11*11` ,有 `96` 个卷积核，卷积步长为 `4` ，卷积层后使用 `ReLU` 激活函数,输出的尺寸为 `（227-11）/4+1=55` ，其输出的每个特征图大小为 `55*55*96`；
 
-        The input image size is: `224*224*3`, for the convenience of subsequent processing, it is generally changed to `227*227*3`, the first convolutional layer is: `11*11*3`, the convolution kernel size is `11*11`, there are `96` convolution kernels, the convolution step size is `4`, the `ReLU` activation function is used after the convolutional layer, the output size is `(227-11)/4+1=55`, and the size of each feature map output is `55*55*96`;
+        The input image size is: 224\*224\*3, for the convenience of subsequent processing, it is generally changed to 227\*227\*3, the first convolutional layer is: 11\*11\*3, the convolution kernel size is 11\*11, there are 96 convolution kernels, the convolution step size is 4, the ReLU activation function is used after the convolutional layer, the output size is (227-11)/4+1=55, and the size of each feature map output is 55\*55\*96;
 
         最大池化层的池化核大小为 `3*3` ,步长为 `2` ,输出的尺寸为  `（55-3）/2+1=27` ，因此特征图的大小为: `27*27*96` 。
 
-    2. **`AlexNet` 网络第二个卷积层**
+        The size of the pooled kernel of the maximum pooling layer is 3\*3, the step size is 2, and the output size is (55-3)/2+1=27, so the size of the feature map is: 27\*27\*96.
+
+    2. **`AlexNet` 网络第二个卷积层** `The second convolutional layer of the AlexNet`
 
         输入的数据为 `27*27*96` ，数据被 `256` 个大小为 `5*5*96` 的卷积核进行卷积运算,步长为 `1` ,填充值为 `2` ,卷积后使用 `ReLU` 层进行处理；
     
