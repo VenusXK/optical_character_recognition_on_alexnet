@@ -153,7 +153,7 @@
 
     <br>
 
-    1. **`AlexNet` 网络第一个卷积层** `The first convolutional layer of the AlexNet`
+    1. **`AlexNet` 网络第一个卷积层 `The first convolutional layer of the AlexNet`**
     
         输入的图片大小为: `224*224*3` ，为后续处理方便，普遍改为 `227*227*3` ，第一个卷积层为: `11*11*3` ，卷积核尺寸为 `11*11` ,有 `96` 个卷积核，卷积步长为 `4` ，卷积层后使用 `ReLU` 激活函数,输出的尺寸为 `（227-11）/4+1=55` ，其输出的每个特征图大小为 `55*55*96`；
 
@@ -163,29 +163,48 @@
 
         The size of the pooled kernel of the maximum pooling layer is 3\*3, the step size is 2, and the output size is (55-3)/2+1=27, so the size of the feature map is: 27\*27\*96.
 
-    2. **`AlexNet` 网络第二个卷积层** `The second convolutional layer of the AlexNet`
+    2. **`AlexNet` 网络第二个卷积层 `The second convolutional layer of the AlexNet`**
 
         输入的数据为 `27*27*96` ，数据被 `256` 个大小为 `5*5*96` 的卷积核进行卷积运算,步长为 `1` ,填充值为 `2` ,卷积后使用 `ReLU` 层进行处理；
+        
+        The input data is 27\*27\*96, and the data is convolved by 256 convolution kernels of size 5\*5\*96, with a step of 1 and a fill value of 2, which is processed using the ReLU layer after convolution;
     
         最大池化层,核大小为 `3*3` ,步长为 `2` ；
+
+        The maximum pooling layer has a kernel size of 3\*3 and a step size of 2;
     
-    3. **`AlexNet` 网络第三层至第五层卷积层**
+    3. **`AlexNet` 网络第三层至第五层卷积层 `The third to the fifth convolutional layer of the AlexNet`**
     
         第三层每组数据被尺寸为 `3*3*384` 的卷积核进行卷积运算,步长为 `1` ,填充值为 `1` ，卷积后使用 `ReLU` 层进行处理；
+
+        Each set of data in the third layer is convolutioned by a convolution kernel with a size of 3\*3\*384, with a step size of 1 and a fill value of 1, and the ReLU layer is used for processing after convolution.
     
         第四层每组数据被尺寸大小为 `3*3*384` 的卷积核卷积运算,步长为 `1` 填充值为 `1` ，卷积后使用 `ReLU` 层进行处理；
+
+        Each set of data in the fourth layer is processed by a convolution kernel convolution with a size of 3\*3\*384, with a step of 1 and a fill value of 1, and the ReLU layer is used for processing after convolution;
     
         第五层每组数据都被尺寸大小为 `3*3*256` 的卷积核进行卷积运算,步长为 `1` ,填充值为 `1` ，卷积后使用 `ReLU` 层进行处理；
+
+        Each set of data in the fifth layer is convolutioned by a convolution kernel with a size of 3\*3\*256, with a step size of 1 and a fill value of 1, and then processed using the ReLU layer after convolution;
     
         经过 `3*3` 池化窗口，步长为 `2` ，池化后输出像素层；
 
-    4. **`AlexNet` 网络第六层至第八层全连接层**
+        After the 3\*3 pooling window, the step size is 2, and the pixel layer is output after pooling;
+
+
+    4. **`AlexNet` 网络第六层至第八层全连接层 `layer 6 to layer 8 full connectivity of the AlexNet`**
     
         第六层首先以 `0.5` 的概率舍弃数据，经过共 `4096` 个神经元处理，之后经过 `ReLU` 层处理；
+
+        The sixth layer first discards the data with a probability of 0.5, after a total of 4096 neuron processing, and then through the ReLU layer;
     
         第七六层首先以 `0.5` 的概率舍弃数据，输入 `4096` 个特征值，输出 `4096` 个特征值，之后经过 `ReLU` 层处理；
+
+        The seventh and sixth layers first discard the data with a probability of 0.5, input 4096 eigenvalues, output 4096 eigenvalues, and then process it through the ReLU layer;
     
         第八层输入 `4096` 个特征值，输出 `3755` 个特征值。
+
+        The eighth layer inputs 4096 eigenvalues and outputs 3755 eigenvalues.
 
 2. 梯度下降法 `SGD`
 3. `Adam` 优化算法
