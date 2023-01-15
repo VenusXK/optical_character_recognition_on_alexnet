@@ -131,8 +131,7 @@
 <br>
 
 <div align=center>
-<img decoding="async" src="./Readme_File/DataLoader.png
-" width="80%">
+<img decoding="async" src="./Readme_File/DataLoader.png" width="80%">
 
 **图4** 一个batchsize输入的图像样例
 
@@ -141,8 +140,7 @@
 <br>
 
 <div align=center>
-<img decoding="async" src="./Readme_File/DataLoader导入训练集情况.jpg
-" width="80%">
+<img decoding="async" src="./Readme_File/DataLoader导入训练集情况.jpg" width="80%">
 
 **图5** 通过DataLoader导入训练集大致情况
 
