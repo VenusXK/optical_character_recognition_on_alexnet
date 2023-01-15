@@ -1,10 +1,9 @@
-# 基于卷积神经网络的印刷体识别 `Typographical-OCR`
-
 <div align=center>
 <img decoding="async" src="./Readme_File/Poster.png" width="25%" >
-</div>
+</div><br>
 
-\
+
+# 基于卷积神经网络的印刷体识别 `Typographical-OCR`
 &emsp;&emsp;这是我在*中国石油大学(华东)机器学习* 课程的项目作业
 
 &emsp;&emsp;This is my assignment of undergraduate education in China University of Petroleum (East China)
