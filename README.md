@@ -18,6 +18,8 @@
     - [2. 使用数据内容组成 `Composition of dataset`](#2-使用数据内容组成-composition-of-dataset)
     - [3. 数据生成过程 `Dataset generation process`](#3-数据生成过程-dataset-generation-process)
     - [4. 数据处理后的结果 `Results of data processing`](#4-数据处理后的结果-results-of-data-processing)
+  - [三、模型描述 `Model description`](#三模型描述-model-description)
+    - [1. 数据处理流程 `Data processing processes`](#1-数据处理流程-data-processing-processes)
 
 ## 一、研究意义 `Research significance`
 &emsp;&emsp;汉字作为中华民族文明发展的信息载体，已有数千年的历史，也是世界上使用人数最多的文字，它记录了璀璨的民族文化，展示了东方民族独特的思维和认知方法。随着计算机技术的推广应用，尤其是互联网的日益普及，人类越来越多地以计算机获得各种信息，大量的信息处理工作也都转移到计算机上进行。在日常生活和工作中，存在着大量的文字信息处理问题，因而将文字信息快速输入计算机的要求就变得非常迫切。现代社会的信息量空前丰富，其中绝大部分信息又是以印刷体的形式进行保存和传播的，这使得以键盘输入为主要手段的计算机输入设备变得相形见绌，输入速度低已经成为信息进入计算机系统的主要瓶颈，影响着整个系统的效率。
@@ -42,55 +44,68 @@
 &emsp;&emsp;According to the Chinese character national standard library drawing, the same font generates 976 pictures as a training set, generates `244` pictures as a test set of accuracy in training, a total of 3755 Chinese characters, a training set (excluding verification set) a total of 3664880 files, each Chinese character has a corresponding 876 training set pictures and 244 verification set pictures, according to AlexNet requirements each picture size should be 227*227.
 
 ### 3. 数据生成过程 `Dataset generation process`
-&emsp;&emsp;首先定义输入参数，其中包括输出目录、字体目录、测试集大小、图像尺寸、图像旋转幅度等等。
+ 1. 首先定义输入参数，其中包括输出目录、字体目录、测试集大小、图像尺寸、图像旋转幅度等等。
 
-&emsp;&emsp;Start by defining the input parameters, which include the output directory, font directory, test set size, image size, image rotation, and so on.
+    Start by defining the input parameters, which include the output directory, font directory, test set size, image size, image rotation, and so on.
 
-&emsp;&emsp;接下来将得到的汉字与序号对应表读入内存，表示汉字序号到汉字的映射，用于后面的字体生成。
+1. 接下来将得到的汉字与序号对应表读入内存，表示汉字序号到汉字的映射，用于后面的字体生成。
 
-&emsp;&emsp;Next, the table corresponding to the obtained Chinese characters and ordinal numbers is read into memory, indicating the mapping of IDs to Chinese characters, which is used for later font generation.
+    Next, the table corresponding to the obtained Chinese characters and ordinal numbers is read into memory, indicating the mapping of IDs to Chinese characters, which is used for later font generation.
 
-&emsp;&emsp;我们对图像进行一定角度的旋转，将旋转角度存储到列表中，旋转角度的范围是 `[-rotate,rotate]` 。
+3. 我们对图像进行一定角度的旋转，将旋转角度存储到列表中，旋转角度的范围是 `[-rotate,rotate]` 。
 
-&emsp;&emsp;We rotate the image at an angle and store the rotation angle in a list with the range of rotation angles [-rotate, rotate].
+    We rotate the image at an angle and store the rotation angle in a list with the range of rotation angles [-rotate, rotate].
 
-&emsp;&emsp;字体图像的生成使用的工具是 `Python` 自带的 `PIL` 库。该库里有图片生成函数，用该函数结合字体文件，可以生成我们想要的图片化的汉字。设定好生成的字体颜色为黑底白色，字体尺寸由输入参数来动态设定。
+4. 字体图像的生成使用的工具是 `Python` 自带的 `PIL` 库。该库里有图片生成函数，用该函数结合字体文件，可以生成我们想要的图片化的汉字。设定好生成的字体颜色为黑底白色，字体尺寸由输入参数来动态设定。
 
-&emsp;&emsp;The tool used to generate font images is Python's built-in PIL library. There is an image generation function in this library, and with this function combined with font files, we can generate the Chinese characters we want to be picturesque. Set the generated font color to white on black, and the font size is dynamically set by input parameters.
+    The tool used to generate font images is Python's built-in PIL library. There is an image generation function in this library, and with this function combined with font files, we can generate the Chinese characters we want to be picturesque. Set the generated font color to white on black, and the font size is dynamically set by input parameters.
 
-&emsp;&emsp;同时，我们对生成的字体进行适当的膨胀和腐蚀，以扩大训练集数量。
+5. 同时，我们对生成的字体进行适当的膨胀和腐蚀，以扩大训练集数量。
 
-&emsp;&emsp;At the same time, we do appropriate bloat and corrosion of the generated fonts to expand the number of training sets.
+    At the same time, we do appropriate bloat and corrosion of the generated fonts to expand the number of training sets.
 
-&emsp;&emsp;执行如下指令，开始生成印刷体文字汉字集。
+6. 执行如下指令，开始生成印刷体文字汉字集。
 
-&emsp;&emsp;Execute the following command to start generating a set of Chinese characters in printed characters.
+    Execute the following command to start generating a set of Chinese characters in printed characters.
 
-```shell
- python gen_printed_char.py --out_dir [out_put_dir] --font_dir [windows_font_dir] --width [img_width] --height [img_height] --margin 4 --rotate 30 --rotate_step 1
-```
+    ```shell
+    python gen_printed_char.py --out_dir [out_put_dir] --font_dir [windows_font_dir] --width [img_width] --height [img_height] --margin 4 --rotate 30 --rotate_step 1
+    ```
 
-&emsp;&emsp;若生成 `227*227` 大小的图片，在 `2060` 显卡下总共生成时间近 `16` 小时，训练集共 `3664880` 个文件。
+7. 若生成 `227*227` 大小的图片，在 `2060` 显卡下总共生成时间近 `16` 小时，训练集共 `3664880` 个文件。
 
-&emsp;&emsp;If an image of 227*227 size is generated, the total generation time under 2060 is nearly 16 hours, and the training set has a total of 3664880 files.
+    If an image of 227*227 size is generated, the total generation time under 2060 is nearly 16 hours, and the training set has a total of 3664880 files.
+
 ### 4. 数据处理后的结果 `Results of data processing`
 
 <div align=center>
-<img decoding="async" src="./Readme_File/数据处理后的结果1.png" width="100%" >
-图1 训练集（不包含验证集）共3755个文字，总共3664880个文件
+<img decoding="async" src="./Readme_File/数据处理后的结果1.png" width="80%" >
 
-Figure 1 The training set (excluding the validation set) contains 3755 characters and 3664880 files
+**图1** 训练集（不包含验证集）共3755个文字，总共3664880个文件
+
+**Figure 1** The training set (excluding the validation set) contains 3755 characters and 3664880 files
 
 </div>
 <br>
 <div align=center>
-<img decoding="async" src="./Readme_File/数据处理后的结果1.png" width="100%" >
-图2 训练集每个汉字共876张图片
+<img decoding="async" src="./Readme_File/数据处理后的结果1.png" width="80%">
 
-Figure 2 A total of 876 pictures of each Chinese character in the training set</div>
+**图2** 训练集每个汉字共876张图片
+
+**Figure 2** A total of 876 pictures of each Chinese character in the training set</div>
 <br>
 <div align=center>
-<img decoding="async" src="./Readme_File/数据处理后的结果2.png" width="100%" >
-图3 验证集每个汉字共244张图片
+<img decoding="async" src="./Readme_File/数据处理后的结果2.png" width="80%" >
 
-Figure 3 A total of 244 images for each Chinese character in the verification set</div>
+**图3** 验证集每个汉字共244张图片
+
+**Figure 3** A total of 244 images for each Chinese character in the verification set</div>
+
+## 三、模型描述 `Model description`
+### 1. 数据处理流程 `Data processing processes`
+1.	AlexNet对图像大小要求为227*227，生成图像时已设置图像大小为227*227；
+2.	使用pytorch的ImageFolder库进行图像文件的选择，ImageFolder假设所有的文件按文件夹保存，每个文件夹下存储同一个类别的图片，文件夹名为类名；
+3.	由于使用pytorch框架，需要将图像转换为Tensor（张量）数据结构，利用torchvsion 下面的transforms库将输入图片转换为Tensor格式，语句如下：
+transforms = transforms.Compose([transforms.ToTensor()])
+data_test = ImageFolder(path_test, transform=transforms)
+4.	使用pytorch的DataLoader库进行训练集的导入，此库导入训练集为成批导入，每一批既导入图像又导入标签，训练时根据每一批图片进行训练，通过设置batch_size可以控制每一批导入数据的量，batch_size越小训练的轮次越多，本次实验设置batch_size为32，通过DataLoader导入训练集大致情况如下图所示：
