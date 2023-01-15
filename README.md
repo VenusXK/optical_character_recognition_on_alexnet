@@ -52,7 +52,7 @@
 
     Next, the table corresponding to the obtained Chinese characters and ordinal numbers is read into memory, indicating the mapping of IDs to Chinese characters, which is used for later font generation.
 
-3. 我们对图像进行一定角度的旋转，将旋转角度存储到列表中，旋转角度的范围是 `[-rotate,rotate]` 。
+3. 我们对图像进行一定角度的旋转，将旋转角度存储到列表中，旋转角度的范围是 `[-rotate, rotate]` 。
 
     We rotate the image at an angle and store the rotation angle in a list with the range of rotation angles [-rotate, rotate].
 
@@ -86,14 +86,18 @@
 **Figure 1** The training set (excluding the validation set) contains 3755 characters and 3664880 files
 
 </div>
+
 <br>
+
 <div align=center>
 <img decoding="async" src="./Readme_File/数据处理后的结果1.png" width="80%">
 
 **图2** 训练集每个汉字共876张图片
 
 **Figure 2** A total of 876 pictures of each Chinese character in the training set</div>
+
 <br>
+
 <div align=center>
 <img decoding="async" src="./Readme_File/数据处理后的结果2.png" width="80%" >
 
@@ -103,9 +107,47 @@
 
 ## 三、模型描述 `Model description`
 ### 1. 数据处理流程 `Data processing processes`
-1.	AlexNet对图像大小要求为227*227，生成图像时已设置图像大小为227*227；
-2.	使用pytorch的ImageFolder库进行图像文件的选择，ImageFolder假设所有的文件按文件夹保存，每个文件夹下存储同一个类别的图片，文件夹名为类名；
-3.	由于使用pytorch框架，需要将图像转换为Tensor（张量）数据结构，利用torchvsion 下面的transforms库将输入图片转换为Tensor格式，语句如下：
-transforms = transforms.Compose([transforms.ToTensor()])
-data_test = ImageFolder(path_test, transform=transforms)
-4.	使用pytorch的DataLoader库进行训练集的导入，此库导入训练集为成批导入，每一批既导入图像又导入标签，训练时根据每一批图片进行训练，通过设置batch_size可以控制每一批导入数据的量，batch_size越小训练的轮次越多，本次实验设置batch_size为32，通过DataLoader导入训练集大致情况如下图所示：
+1.	AlexNet对图像大小要求为 `227*227` ，生成图像时已设置图像大小为 `227*227` ；
+
+    AlexNet has an image size requirement of 227\*227, and the image size has been set to 227\*227 when generating images;
+
+2.	使用 `pytorch` 的 `ImageFolder` 库进行图像文件的选择， `ImageFolder` 假设所有的文件按文件夹保存，每个文件夹下存储同一个类别的图片，文件夹名为类名；
+
+    Use pytorch's ImageFolder library for image file selection, ImageFolder assumes that all files are saved in folders, and the same category of pictures is stored under each folder, and the folder name is class name;
+
+
+3.	由于使用 `pytorch` 框架，需要将图像转换为 `Tensor`（张量）数据结构，利用 `torchvsion` 下面的 `transforms` 库将输入图片转换为 `Tensor` 格式，语句如下：
+
+    Since the 'pytorch' framework is used, the image needs to be converted to a 'tensor' data structure, and the 'transforms' library under 'torchvsion' is used to convert the input image to 'tensor' format with the following statement:
+
+    ```py
+    transforms = transforms.Compose([transforms.ToTensor()])
+    data_test = ImageFolder(path_test, transform=transforms)
+    ```
+4.	使用 `pytorch` 的 `DataLoader` 库进行训练集的导入，此库导入训练集为成批导入，每一批既导入图像又导入标签，训练时根据每一批图片进行训练，通过设置 `batch_size` 可以控制每一批导入数据的量， `batch_size` 越小训练的轮次越多，本次实验设置 `batch_size` 为 `32` ，通过 `DataLoader` 导入训练集大致情况如下图所示：
+
+    Use pytorch's DataLoader library for the import of the training set, this library imports the training set as batch import, each batch both imports images and labels, training according to each batch of pictures for training, through the setting batch_size you can control the amount of data imported into each batch, the smaller the batch_size, the more rounds of training, the batch_size of this experiment is set to 32, The following figure shows the general situation of importing the training set through DataLoader:
+
+<br>
+
+<div align=center>
+<img decoding="async" src="./Readme_File/DataLoader.png
+" width="80%">
+
+**图4** 一个batchsize输入的图像样例
+
+**Figure 4** An example of an image of a batchsize input</div>
+
+<br>
+
+<div align=center>
+<img decoding="async" src="./Readme_File/DataLoader导入训练集情况.jpg
+" width="80%">
+
+**图5** 通过DataLoader导入训练集大致情况
+
+**Figure 5** Importing the training set via DataLoader gives you an overview</div>
+
+5. 本次训练由于数据集较大，使用 `gpu` 加速，通过安装 `nvidia` 的 `cuda` 模块并下载 `pytorch` 的 `cuda 11.6` 版本配置 `pytorch` 环境，通过 `torch.cuda.is_available` 判断 `cuda` 是否可用，在可用的基础上通过 `device = torch.device("cuda")` 语句设置 `gpu` 硬件，并对通过 `DataLoader` 导入的每一批训练集数据通过 `images = images.to(device)` 和 `labels = labels.to(device)` 语句将训练集数据导入 `gpu` 。
+
+    This training uses GPU acceleration due to the large data set, configures the PyTorch environment by installing NVIDIA's CUDA module and downloading the CUDA 11.6 version of PyTorch, determines whether CUDA is available through the torch.cuda.is_available, and sets the GPU hardware through the device = Torch.Device ("CUDA") statement on the basis of availability. For each batch of training set data imported through DataLoader, import the training set data into the GPU through images = images.to (device) and labels = labels.to (device) statements.
