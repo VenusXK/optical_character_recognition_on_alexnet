@@ -4,13 +4,11 @@
 
 # 基于卷积神经网络的印刷体识别 `Typographical-OCR`
 
-### 简介 `Brief introduction`
-&emsp;&emsp;这是我在*中国石油大学(华东)机器学习* 课程的项目作业
-
-&emsp;&emsp;This is my assignment of undergraduate education in China University of Petroleum (East China)
+>### 简介 `Brief introduction`
+>这是我在中国石油大学(华东)本科期间机器学习课程的项目作业\
+>This is my assignment of undergraduate education in China University of Petroleum (East China)
 ### 目录 `Directory`
 - [基于卷积神经网络的印刷体识别 `Typographical-OCR`](#基于卷积神经网络的印刷体识别-typographical-ocr)
-    - [简介 `Brief introduction`](#简介-brief-introduction)
     - [目录 `Directory`](#目录-directory)
   - [一、研究意义 `Research significance`](#一研究意义-research-significance)
   - [二、数据描述 `Dataset description`](#二数据描述-dataset-description)
