@@ -1,6 +1,6 @@
-<br><div align=center>
+<div align=center>
 <img decoding="async" src="./Readme_File/Poster_matplotlib.png" width="40%" >
-</div><br>
+</div>
 
 
 # 基于卷积神经网络的印刷体识别 `Typographical-OCR`
