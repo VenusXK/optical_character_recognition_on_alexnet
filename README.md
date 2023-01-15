@@ -21,7 +21,7 @@
 ## 二、数据描述
 
 ### 1. 数据获取途径
-&emsp;&emsp;利用WINDOWS自带的字体文件库，用Python的PIL库绘图，每张图片上绘制一个文字，总共绘制3755个汉字，
+&emsp;&emsp;利用 `Windows` 自带的字体文件库，用 `Python` 的 `PIL` 库绘图，每张图片上绘制一个文字，总共绘制 `3755` 个汉字，
 
 &emsp;&emsp;Using the font file library that comes with WINDOWS, drawing with Python's PIL library, drawing a text on each picture, drawing a total of 3755 Chinese characters.
 
@@ -29,22 +29,22 @@
 
 &emsp;&emsp;根据汉字国标库绘图，同一字体生成 `976` 张图片作为训练集，生成 `244` 张图片作为训练中准确率的测试集，总共 `3755` 个汉字，训练集（不包含验证集）共 `3664880` 个文件，每个汉字有对应 `876` 张训练集图片和 `244` 张验证集图片，根据 `AlexNet` 要求每张图片大小应为 `227*227` 。
 
-&emsp;&emsp;According to the Chinese character national standard library drawing, the same font generates 976 pictures as a training set, generates 244 pictures as a test set of accuracy in training, a total of 3755 Chinese characters, a training set (excluding verification set) a total of 3664880 files, each Chinese character has a corresponding 876 training set pictures and 244 verification set pictures, according to AlexNet requirements each picture size should be 227*227.
+&emsp;&emsp;According to the Chinese character national standard library drawing, the same font generates 976 pictures as a training set, generates `244` pictures as a test set of accuracy in training, a total of 3755 Chinese characters, a training set (excluding verification set) a total of 3664880 files, each Chinese character has a corresponding 876 training set pictures and 244 verification set pictures, according to AlexNet requirements each picture size should be 227*227.
 
 ### 3. 数据生成过程
 &emsp;&emsp;首先定义输入参数，其中包括输出目录、字体目录、测试集大小、图像尺寸、图像旋转幅度等等。
 
 &emsp;&emsp;Start by defining the input parameters, which include the output directory, font directory, test set size, image size, image rotation, and so on.
 
-&emsp;&emsp;接下来将得到的汉字与序号对应表读入内存，表示ID到汉字的映射，用于后面的字体生成。
+&emsp;&emsp;接下来将得到的汉字与序号对应表读入内存，表示汉字序号到汉字的映射，用于后面的字体生成。
 
 &emsp;&emsp;Next, the table corresponding to the obtained Chinese characters and ordinal numbers is read into memory, indicating the mapping of IDs to Chinese characters, which is used for later font generation.
 
-&emsp;&emsp;我们对图像进行一定角度的旋转，将旋转角度存储到列表中，旋转角度的范围是[-rotate,rotate]。
+&emsp;&emsp;我们对图像进行一定角度的旋转，将旋转角度存储到列表中，旋转角度的范围是 `[-rotate,rotate]` 。
 
 &emsp;&emsp;We rotate the image at an angle and store the rotation angle in a list with the range of rotation angles [-rotate, rotate].
 
-&emsp;&emsp;字体图像的生成使用的工具是Python自带的PIL库。该库里有图片生成函数，用该函数结合字体文件，可以生成我们想要的图片化的汉字。设定好生成的字体颜色为黑底白色，字体尺寸由输入参数来动态设定。
+&emsp;&emsp;字体图像的生成使用的工具是 `Python` 自带的 `PIL` 库。该库里有图片生成函数，用该函数结合字体文件，可以生成我们想要的图片化的汉字。设定好生成的字体颜色为黑底白色，字体尺寸由输入参数来动态设定。
 
 &emsp;&emsp;The tool used to generate font images is Python's built-in PIL library. There is an image generation function in this library, and with this function combined with font files, we can generate the Chinese characters we want to be picturesque. Set the generated font color to white on black, and the font size is dynamically set by input parameters.
 
@@ -60,6 +60,6 @@
  python gen_printed_char.py --out_dir [out_put_dir] --font_dir [windows_font_dir] --width [img_width] --height [img_height] --margin 4 --rotate 30 --rotate_step 1
 ```
 
-&emsp;&emsp;若生成227*227大小的图片，在2060下总共生成时间近16小时，训练集共3664880个文件。
+&emsp;&emsp;若生成 `227*227` 大小的图片，在 `2060` 显卡下总共生成时间近 `16` 小时，训练集共 `3664880` 个文件。
 
 &emsp;&emsp;If an image of 227*227 size is generated, the total generation time under 2060 is nearly 16 hours, and the training set has a total of 3664880 files.
