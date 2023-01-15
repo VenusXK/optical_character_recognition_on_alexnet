@@ -2,13 +2,22 @@
 <img decoding="async" src="./Readme_File/Poster_matplotlib.png" width="40%" >
 </div> -->
 
-
 # 基于卷积神经网络的印刷体识别 `Typographical-OCR`
+
+### 简介
 &emsp;&emsp;这是我在*中国石油大学(华东)机器学习* 课程的项目作业
 
 &emsp;&emsp;This is my assignment of undergraduate education in China University of Petroleum (East China)
-
-&emsp;&emsp;[TOC]
+### 目录
+- [基于卷积神经网络的印刷体识别 `Typographical-OCR`](#基于卷积神经网络的印刷体识别-typographical-ocr)
+    - [简介](#简介)
+    - [目录](#目录)
+  - [一、研究意义 `Research significance`](#一研究意义-research-significance)
+  - [二、数据描述 `Dataset description`](#二数据描述-dataset-description)
+    - [1. 数据获取途径 `Access to dataset`](#1-数据获取途径-access-to-dataset)
+    - [2. 使用数据内容组成 `Composition of dataset`](#2-使用数据内容组成-composition-of-dataset)
+    - [3. 数据生成过程 `Dataset generation process`](#3-数据生成过程-dataset-generation-process)
+    - [4. 数据处理后的结果 `Results of data processing`](#4-数据处理后的结果-results-of-data-processing)
 
 ## 一、研究意义 `Research significance`
 &emsp;&emsp;汉字作为中华民族文明发展的信息载体，已有数千年的历史，也是世界上使用人数最多的文字，它记录了璀璨的民族文化，展示了东方民族独特的思维和认知方法。随着计算机技术的推广应用，尤其是互联网的日益普及，人类越来越多地以计算机获得各种信息，大量的信息处理工作也都转移到计算机上进行。在日常生活和工作中，存在着大量的文字信息处理问题，因而将文字信息快速输入计算机的要求就变得非常迫切。现代社会的信息量空前丰富，其中绝大部分信息又是以印刷体的形式进行保存和传播的，这使得以键盘输入为主要手段的计算机输入设备变得相形见绌，输入速度低已经成为信息进入计算机系统的主要瓶颈，影响着整个系统的效率。
