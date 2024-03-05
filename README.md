@@ -2,8 +2,6 @@
 <img decoding="async" src="./Readme_File/Poster_matplotlib.png" width="40%" >
 </div> -->
 
-# my optical character recognition
-
 >### Brief introduction
 >This is my assignment of undergraduate education in China University of Petroleum (East China)
 >### About the contents of the 'dataset' folder usage
@@ -32,27 +30,18 @@
 >The res directory is the model training result directory, which contains the raw data of Loss image generation code, Accuracy image generation code, Loss image, Accuracy image, Loss, and Accuracy
 
 ### Directory
-- [my optical character recognition](#my-optical-character-recognition)
-    - [Directory](#directory)
-  - [Research significance](#research-significance)
-  - [Dataset description](#dataset-description)
-    - [1. Access to dataset](#1-access-to-dataset)
-    - [2. Composition of dataset](#2-composition-of-dataset)
-    - [3. Dataset generation process](#3-dataset-generation-process)
-    - [4. Results of data processing](#4-results-of-data-processing)
-  - [三、Model description](#三model-description)
-    - [1. Data processing processes](#1-data-processing-processes)
-    - [2. The algorithm used](#2-the-algorithm-used)
-    - [3. Pseudocode](#3-pseudocode)
-    - [4. flow chart](#4-flow-chart)
-  - [Algorithm implementation](#algorithm-implementation)
-    - [1. AlexNet convolutional neural network structure implementation](#1-alexnet-convolutional-neural-network-structure-implementation)
-    - [2. Image segmentation algorithm implementation](#2-image-segmentation-algorithm-implementation)
-  - [Operation results and analysis](#operation-results-and-analysis)
-    - [1. Performance evaluation indicators](#1-performance-evaluation-indicators)
-    - [2. Training results and analysis of the model](#2-training-results-and-analysis-of-the-model)
-    - [3. Run results and analysis of segmentation prediction on unknown images](#3-run-results-and-analysis-of-segmentation-prediction-on-unknown-images)
-    - [summary](#summary)
+- [Research significance](#research-significance)
+- [Dataset description](#dataset-description)
+  - [1. Access to dataset](#1-access-to-dataset)
+  - [2. Composition of dataset](#2-composition-of-dataset)
+  - [3. Dataset generation process](#3-dataset-generation-process)
+  - [2. Image segmentation algorithm implementation](#2-image-segmentation-algorithm-implementation)
+- [Operation results and analysis](#operation-results-and-analysis)
+  - [1. Performance evaluation indicators](#1-performance-evaluation-indicators)
+  - [2. Training results and analysis of the model](#2-training-results-and-analysis-of-the-model)
+  - [3. Run results and analysis of segmentation prediction on unknown images](#3-run-results-and-analysis-of-segmentation-prediction-on-unknown-images)
+  - [summary](#summary)
+
 
 ## Research significance
 
